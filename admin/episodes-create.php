@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../app/config/config.php';
+require_once __DIR__ . '/../app/core/helpers.php';
+require_once __DIR__ . '/../app/core/admin_guard.php';
+require_once __DIR__ . '/../app/config/database.php';
+$series=db()->query('SELECT id,title FROM series ORDER BY title')->fetchAll();
+if($_SERVER['REQUEST_METHOD']==='POST'){db()->prepare('INSERT INTO episodes (series_id, season_number, episode_number, title, description, duration_min, air_date, thumbnail_url) VALUES (:series_id,:season_number,:episode_number,:title,:description,:duration_min,:air_date,:thumbnail_url)')->execute(['series_id'=>(int)$_POST['series_id'],'season_number'=>(int)$_POST['season_number'],'episode_number'=>(int)$_POST['episode_number'],'title'=>$_POST['title'],'description'=>$_POST['description'],'duration_min'=>(int)$_POST['duration_min'],'air_date'=>$_POST['air_date']?:null,'thumbnail_url'=>$_POST['thumbnail_url']]); flash('success','Episode created.'); redirect('episodes-list.php');}
+require_once __DIR__ . '/../app/views/partials/header.php'; require_once __DIR__ . '/../app/views/partials/navbar.php'; ?><main class="container narrow"><h1>Add Episode</h1><form method="post" class="card form-grid"><select name="series_id" required><?php foreach($series as $item): ?><option value="<?= (int)$item['id'] ?>"><?= e($item['title']) ?></option><?php endforeach; ?></select><input name="season_number" type="number" placeholder="Season" required><input name="episode_number" type="number" placeholder="Episode" required><input name="title" placeholder="Title" required><textarea name="description" placeholder="Description"></textarea><input name="duration_min" type="number" placeholder="Duration" required><input name="air_date" type="date"><input name="thumbnail_url" placeholder="Thumbnail URL"><button type="submit">Save</button></form></main><?php require_once __DIR__ . '/../app/views/partials/footer.php'; ?>

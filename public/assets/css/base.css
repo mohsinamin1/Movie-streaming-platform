@@ -1,0 +1,46 @@
+:root {
+    --bg: #f5f7fb;
+    --text: #12203a;
+    --primary: #0b5fff;
+    --surface: #ffffff;
+    --muted: #6a7890;
+    --ok: #1a8f4b;
+    --danger: #b42318;
+    --border: #d7ddeb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: var(--text);
+    background: radial-gradient(circle at top right, #dce8ff 0%, var(--bg) 40%);
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+}
+
+button {
+    border: 0;
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+input, textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+}

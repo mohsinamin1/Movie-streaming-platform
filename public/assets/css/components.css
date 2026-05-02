@@ -1,0 +1,28 @@
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.form-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.flash {
+    width: min(1100px, 92%);
+    margin: 12px auto;
+    padding: 10px 14px;
+    border-radius: 8px;
+}
+
+.flash.success {
+    background: #dcfce7;
+    color: var(--ok);
+}
+
+.flash.error {
+    background: #fee2e2;
+    color: var(--danger);
+}

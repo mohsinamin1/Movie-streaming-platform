@@ -1,0 +1,11 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../app/config/config.php';
+require_once __DIR__ . '/../app/core/helpers.php';
+require_once __DIR__ . '/../app/core/admin_guard.php';
+require_once __DIR__ . '/../app/config/database.php';
+
+$id=(int)($_GET['id']??0); $stmt=db()->prepare('SELECT * FROM series WHERE id=:id LIMIT 1'); $stmt->execute(['id'=>$id]); $item=$stmt->fetch(); if(!$item){redirect('series-list.php');}
+if($_SERVER['REQUEST_METHOD']==='POST'){db()->prepare('UPDATE series SET title=:title, description=:description, total_seasons=:total_seasons, status=:status, language=:language, rating=:rating, imdb_score=:imdb_score, poster_url=:poster_url, trailer_url=:trailer_url, is_featured=:is_featured WHERE id=:id')->execute(['id'=>$id,'title'=>$_POST['title'],'description'=>$_POST['description'],'total_seasons'=>(int)$_POST['total_seasons'],'status'=>$_POST['status'],'language'=>$_POST['language'],'rating'=>$_POST['rating'],'imdb_score'=>(float)$_POST['imdb_score'],'poster_url'=>$_POST['poster_url'],'trailer_url'=>$_POST['trailer_url'],'is_featured'=>isset($_POST['is_featured'])?1:0]); flash('success','Series updated.'); redirect('series-list.php');}
+require_once __DIR__ . '/../app/views/partials/header.php'; require_once __DIR__ . '/../app/views/partials/navbar.php';
+?><main class="container narrow"><h1>Edit Series</h1><form method="post" class="card form-grid"><input name="title" value="<?= e($item['title']) ?>" required><textarea name="description"><?= e((string)$item['description']) ?></textarea><input name="total_seasons" type="number" value="<?= e((string)$item['total_seasons']) ?>" required><input name="status" value="<?= e((string)($item['status'] ?? '')) ?>"><input name="language" value="<?= e((string)($item['language'] ?? '')) ?>"><input name="rating" value="<?= e((string)($item['rating'] ?? '')) ?>"><input name="imdb_score" type="number" step="0.1" value="<?= e((string)($item['imdb_score'] ?? '')) ?>"><input name="poster_url" value="<?= e((string)($item['poster_url'] ?? '')) ?>"><input name="trailer_url" value="<?= e((string)($item['trailer_url'] ?? '')) ?>"><label><input type="checkbox" name="is_featured" <?= ((int)$item['is_featured']===1)?'checked':'' ?>> Featured</label><button type="submit">Update</button></form></main><?php require_once __DIR__ . '/../app/views/partials/footer.php'; ?>

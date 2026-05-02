@@ -1,0 +1,52 @@
+.container {
+    width: min(1100px, 92%);
+    margin: 24px auto;
+}
+
+.narrow {
+    width: min(560px, 92%);
+}
+
+.row {
+    display: flex;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.center {
+    align-items: center;
+}
+
+.gap {
+    gap: 12px;
+}
+
+.grid {
+    display: grid;
+    gap: 16px;
+}
+
+.cards {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.topbar {
+    background: #0f172a;
+    color: #fff;
+    padding: 12px 0;
+}
+
+.topbar a {
+    color: #fff;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.hero {
+    margin-bottom: 28px;
+}
