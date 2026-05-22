@@ -1,4 +1,4 @@
-# Movie Streaming Platform (Schema Unchanged)
+# Movie Streaming Platform
 
 ## Stack
 - PHP 8+
