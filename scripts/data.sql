@@ -291,13 +291,4 @@ INSERT INTO series (title, description, total_seasons, status, language, rating,
 ('Money Heist', 'A criminal mastermind plans the biggest heist in history', 5, 'completed', 'es', 'TV-MA', 8.2, FALSE),
 ('Squid Game', 'Desperate people compete in deadly children games', 1, 'completed', 'ko', 'TV-MA', 8.0, TRUE);
 
-INSERT INTO episodes (series_id, season_number, episode_number, title, description, duration_min, air_date) VALUES
-(1, 1, 1, 'The Vanishing of Will Byers', 'A young boy disappears, and his friends search for him', 47, '2016-07-15'),
-(1, 1, 2, 'The Weirdo on Maple Street', 'The boys meet a mysterious girl with supernatural powers', 55, '2016-07-15'),
-(2, 1, 1, 'The End Beginning', 'Geralt of Rivia, a mutated monster hunter', 61, '2019-12-20'),
-(3, 1, 1, 'Pilot', 'Walter White discovers he has cancer', 58, '2008-01-20');
 
-INSERT INTO banners (title, image_url, link_url, region, display_order, is_active) VALUES
-('New Release: Dune Part 2', 'https://example.com/dune2.jpg', '/movies', 'global', 1, TRUE),
-('Stranger Things Season 5', 'https://example.com/st5.jpg', '/series', 'global', 2, TRUE),
-('Summer Sale - 50% Off', 'https://example.com/sale.jpg', '/plans', 'global', 3, TRUE);
